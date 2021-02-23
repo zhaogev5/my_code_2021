@@ -1,0 +1,46 @@
+Train:
+  Supervise: all #all/half
+  Start_Update: 50
+  Update_Interval: 1
+  Batch_Size: 8
+  Max_Epoch: 50
+  Gpus: 0 #int or None
+  Lr: 0.0002
+  Gamma: 0.1
+  Milestones: [15,30,40]
+  Opt: Adam
+  Val_Interval: 1 #int or None
+  Loss: CrossEntropyLoss
+  Balance_Weight: Auto #Auto or [list]
+  Resume: ''
+
+Val:
+  Gpus: 0 #int or None
+  Batch_Size: 4
+  Confusion_Matrix: True
+
+Test:
+  Gpus: 0 #int or None
+  Batch_Size: 4
+  Con_Thresh: 0.7
+  Weight_Path: None
+
+Model:
+  Model_Name: resnet50
+  Pretrained: True
+  Frozen_Stage: False
+  In_Channels: 3
+  Out_Channels: 2048
+  Sensors: ['RGB','INF']
+  Fusion_Mode: Input_Fusion #No_Fusion/Input_Fusion/Feature_Fusion/Decision_Fusion 
+  Fusion_kernal_size: 1
+
+Dataset:
+  Root_Dir: ./datasets/All/
+  Sensors: ['RGB','INF'] #'RGB''INF',
+  Unlabel_Ratio: 0
+  Input_Size: 256
+  Num_Workers: 10
+  Mean: [ 0.485, 0.456, 0.406 ]
+  Std: [ 0.229, 0.224, 0.225 ]
+  Obj_List: [ '0','1','2','3','4','5','6','7','8','9','10','11']
